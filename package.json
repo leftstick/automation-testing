@@ -1,0 +1,31 @@
+{
+  "name": "automation-testing",
+  "version": "1.0.0",
+  "description": "I am going to introduce automation-testing in web/mobile",
+  "files": [
+    "css",
+    "js",
+    "lib",
+    "plugin",
+    "index.html",
+    "package.json"
+  ],
+  "keywords": [
+    "presentation",
+    "automation-testing"
+  ],
+  "author": "Howard.Zuo <leftstick@qq.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leftstick/automation-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/leftstick/automation-testing/issues"
+  },
+  "homepage": "https://github.com/leftstick/automation-testing#readme"
+}
