@@ -110,6 +110,88 @@
 				</section>
 
 				<section>
+
+					<section>
+						<h2>Web Testing Tools</h2>
+						<ul>
+							<li><a href="http://www.seleniumhq.org/">selenium</a></li>
+							<li><a href="https://smartbear.com/product/testcomplete/web-module/overview/">smartbear</a></li>
+							<li><a href="http://heliumhq.com/">helium</a></li>
+							<li><a href="http://sahipro.com/">sahi</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Try Selenium locally</h2>
+
+						<p>Prerequisites</p>
+						<ul>
+							<li>Have <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank">java</a> installed</li>
+							<li>Have <a href="https://sites.google.com/a/chromium.org/chromedriver/">Chrome Driver</a> downloaded</li>
+							<li>Have <a href="http://maven.apache.org/">maven</a> installed</li>
+						</ul>
+					</section>
+
+					<section>
+						<pre><code class="java" data-trim style="font-size: 15px;">
+public class Selenium2ExampleTest {
+
+    private String testUrl;
+    private WebDriver driver;
+
+    @Before
+    public void prepare() {
+        //setup chromedriver
+        System.setProperty(
+                "webdriver.chrome.driver",
+                "webdriver/chromedriver");
+
+        testUrl = "http://leftstick.github.io/";
+
+        // Create a new instance of the Chrome driver
+        driver = new ChromeDriver();
+
+        //set window size
+        driver.manage().window().setSize(new Dimension(1300,1000));
+
+        // And now use this to visit myBlog
+        // Alternatively the same thing can be done like this
+        // driver.navigate().to(testUrl);
+        driver.get(testUrl);
+    }
+
+    @Test
+    public void testTitle() throws IOException {
+
+        // Find elements by attribute lang="READ_MORE_BTN"
+        List&lt;WebElement&gt; elements = driver
+                .findElements(By.cssSelector("[lang=\"READ_MORE_BTN\"]"));
+
+        //Click the selected button
+        elements.get(0).click();
+
+        assertTrue("The page title should be chagned as expected",
+                (new WebDriverWait(driver, 3))
+                       .until(new ExpectedCondition&lt;Boolean&gt;() {
+                           public Boolean apply(WebDriver d) {
+                               return d.getTitle().equals("以BDD手写依赖注入");
+                           }
+                       })
+        );
+    }
+
+    @After
+    public void teardown() throws IOException {
+        driver.quit();
+    }
+
+}
+						</code></pre>
+					</section>
+
+				</section>
+
+				<section>
 					<h2>Point of View</h2>
 					<p>
 						Press <strong>ESC</strong> to enter the slide overview.
@@ -134,6 +216,8 @@
 				progress: true,
 				history: true,
 				center: true,
+				width: 900,
+				height: 500,
 
 				transition: 'slide', // none/fade/slide/convex/concave/zoom
 
